@@ -1,0 +1,16 @@
+{
+  "name": "rear-cli",
+  "version": "0.1.0-alpha.1",
+  "author": "Roberto Mauro <erremauro@icloud.com>",
+  "license": "MIT",
+  "repository": "https://github.com/rearjs/rear.git",
+  "bin": {
+    "rear": "./bin/rear.js"
+  },
+  "dependencies": {
+    "rear-core": "^0.1.0-alpha.1"
+  },
+  "devDependencies": {
+
+  }
+}
