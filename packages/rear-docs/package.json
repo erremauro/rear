@@ -7,8 +7,6 @@
   "scripts": {
     "rear-docs": "./bin/rear-docs.js"
   },
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

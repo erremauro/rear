@@ -10,7 +10,5 @@
   "dependencies": {
     "rear-core": "^0.1.0-alpha.1"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }
