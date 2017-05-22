@@ -16,10 +16,14 @@ script:
   - 'if [ "$JOB" = "test-coverage" ]; then make test-ci-coverage; fi'
   - 'if [ "$JOB" = "lint" ]; then make lint && make flow; fi'
 
-matrix:
-  fast_finish: true
-  include:
-    - node_js: "7"
-      env: JOB=test-coverage
-    - node_js: "node"
-      env: JOB=test
+# Uncomment to define a build matrix.
+# Use "include/exclude" to add or remove job to the matrix.
+# Read more: https://docs.travis-ci.com/user/customizing-the-build#Build-Matrix
+#
+# matrix:
+#  fast_finish: true
+#  include:
+#    - node_js: "7"
+#      env: JOB=test-coverage
+#    - node_js: "node"
+#      env: JOB=test
