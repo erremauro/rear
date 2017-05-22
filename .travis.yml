@@ -12,7 +12,7 @@ env:
   - JOB=test
 
 script:
-  - 'if [ "$JOB" = "test" ]; then make test-ci; fi'
+  - 'if [ "$JOB" = "test" ]; then make test; fi'
   - 'if [ "$JOB" = "test-coverage" ]; then make test-ci-coverage; fi'
   - 'if [ "$JOB" = "lint" ]; then make lint && make flow; fi'
 
@@ -22,4 +22,4 @@ matrix:
     - node_js: "7"
       env: JOB=test-coverage
     - node_js: "node"
-      env: JOB=lint
+      env: JOB=test
