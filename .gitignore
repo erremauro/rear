@@ -1,4 +1,6 @@
 # User Custom
+
+sandbox/
 lerna-debug.log
 .env
 
