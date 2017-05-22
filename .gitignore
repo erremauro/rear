@@ -1,5 +1,8 @@
 # User Custom
+
 sandbox/
+lerna-debug.log
+.env
 
 # Logs
 logs
