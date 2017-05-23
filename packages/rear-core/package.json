@@ -1,9 +1,17 @@
 {
   "name": "rear-core",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "author": "Roberto Mauro <erremauro@icloud.com>",
   "license": "MIT",
   "repository": "https://github.com/rearjs/rear.git",
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "test": "./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "opn": "^4.0.2"
+  },
+  "devDependencies": {
+    "jest": "^20.0.3"
+  }
 }
