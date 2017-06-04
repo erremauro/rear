@@ -1,6 +1,5 @@
 test('Should create a default pool', () => {
-  const db = require('./db');
-  db({
+  const db = require('./db')({
     user: 'express',
     password: 'express',
     database: 'express',
@@ -18,10 +17,8 @@ test('Default pool should be already defined', () => {
 });
 
 test('Should add a new pool named "test"', () => {
-  const db = require('./db');
-  const poolName = 'test';
-
-  db({
+  const name = 'test';
+  const config = {
     user: 'express',
     password: 'express',
     database: 'express',
@@ -29,8 +26,9 @@ test('Should add a new pool named "test"', () => {
     port: 5432,
     max: 10,
     idleTimeoutMillis: 30000
-  }, poolName);
-  expect(db.exists(poolName)).toBeTruthy();
+  };
+  const db = require('./db')(config, name);
+  expect(db.exists(name)).toBeTruthy();
 })
 
 test('Should remove a pool named "test"', () => {

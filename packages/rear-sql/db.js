@@ -3,6 +3,7 @@ const pools = {};
 
 function PoolManager(config, name) {
   PoolManager.createPool(config, name);
+  return PoolManager;
 }
 
 PoolManager.createPool = (config, name) => {
