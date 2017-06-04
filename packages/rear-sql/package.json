@@ -5,6 +5,11 @@
   "license": "MIT",
   "repository": "https://github.com/rearjs/rear.git",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "db.js",
+    "query.js"
+  ],
   "scripts": {
     "test": "./node_modules/.bin/jest"
   },
@@ -12,6 +17,6 @@
     "pg": "^6.2.3"
   },
   "devDependencies": {
-    "jest": "*"
+    "jest": "^20.0.4",
   }
 }
