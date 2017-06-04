@@ -1,13 +1,18 @@
 {
   "name": "rear-cli",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "author": "Roberto Mauro <erremauro@icloud.com>",
   "license": "MIT",
   "repository": "https://github.com/rearjs/rear.git",
   "bin": {
     "rear": "./bin/rear.js"
   },
+  "scripts": {
+    "pippo": "echo \"Piastraaa\""
+  },
   "dependencies": {
-    "rear-core": "^0.1.0-alpha.3"
+    "glob": "^7.1.2",
+    "rear-core": "^0.1.0-alpha.3",
+    "slide": "^1.1.6"
   }
 }
