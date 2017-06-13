@@ -2,7 +2,8 @@
   "private": true,
   "name": "rear-sandbox",
   "dependencies": {
-    "rear-cli": "^0.1.1"
+    "rear-cli": "^0.1.2",
+    "rear-server-scripts": "^0.1.2"
   },
-  "version": "0.1.1"
+  "version": "0.1.2"
 }
