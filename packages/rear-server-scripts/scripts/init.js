@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const logger = require('rear-logger')('rear-server-scripts-init');
-const spawn = require('child_process').spawn;
+const spawnSync = require('child_process').spawnSync;
 
 module.exports = init;
 
@@ -103,7 +103,7 @@ function installDependencies(root, useYarn, verbose) {
   }
 
   logger.info(`Installing dependencies using ${command}...`);
-  const proc = spawn.sync(command, args, { stdio: 'inherit' });
+  const proc = spawnSync(command, args, { stdio: 'inherit' });
   if (proc.status !== 0) {
     logger.error(`\`${command} ${args.join(' ')}\` failed`);
     return;
