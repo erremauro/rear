@@ -2,8 +2,11 @@
   "private": true,
   "name": "rear-sandbox",
   "dependencies": {
+    "express": "^4.15.3",
     "rear-cli": "^0.1.2",
-    "rear-server-scripts": "^0.1.3"
+    "rear-core": "^0.1.1",
+    "rear-logger": "^0.1.0-alpha.3",
+    "rear-server-scripts": "^0.1.4"
   },
-  "version": "0.1.3"
+  "version": "0.1.4"
 }
