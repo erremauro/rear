@@ -1,0 +1,10 @@
+{
+  "name": "rear-server-scripts",
+  "version": "0.1.0-alpha.1",
+  "description": "RearServer project scripts and templates",
+  "author": "Roberto Mauro <erremauro@icloud.com>",
+  "license": "MIT",
+  "repository": "https://github.com/rearjs/rear.git",
+  "dependencies": {},
+  "devDependencies": {}
+}
