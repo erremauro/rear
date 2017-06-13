@@ -1,5 +1,6 @@
 {
   "name": "rear-sql",
+  "version": "0.1.0",
   "author": "Roberto Mauro <erremauro@icloud.com>",
   "license": "MIT",
   "repository": "https://github.com/rearjs/rear.git",

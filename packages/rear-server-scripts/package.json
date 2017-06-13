@@ -1,6 +1,6 @@
 {
   "name": "rear-server-scripts",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0",
   "description": "RearServer project scripts and templates",
   "author": "Roberto Mauro <erremauro@icloud.com>",
   "license": "MIT",
