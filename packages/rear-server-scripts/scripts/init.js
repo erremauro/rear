@@ -7,61 +7,50 @@ module.exports = init;
 
 ///////////////////////
 
-// type InitProps {
-//   app: {
-//     name: string,
-//     path: string,
-//     source: string
-//   },
-//   verbose: boolean,
-//   useYarn: boolean,
-//   template: ?string
-// }
-
-function init(props) {
-  prepareProject(props);
-  copyTemplate(props);
-  installDependencies(props);
+function init(root, appName, origin, verbose, useYarn, template) {
+  prepareProject(root);
+  copyTemplate(root, origin, template);
+  installDependencies(root, useYarn, verbose);
 }
 
-function prepareProject(props) {
-  const appPackage = require(path.join(props.app.path 'package.json'));
+function prepareProject(root) {
+  const appPackage = require(path.join(root, 'package.json'));
 
   appPackage.dependencies = appPackage.dependencies || {};
   appPackage.devDependencies = appPackage.devDependencies || {};
 
   appPackage.scripts = {
-    start: 'rear-xp start',
-    build: 'rear-xp build',
-    test: 'rear-xp test',
-    eject: 'rear-xp eject',
+    start: 'rear start',
+    build: 'rear build',
+    test: 'rear test',
+    eject: 'rear eject',
   };
 
   fs.writeFileSync(
-    path.join(props.app.path, 'package.json'),
+    path.join(root, 'package.json'),
     JSON.stringify(appPackage, null, 2)
   );
 
-  const readmeExists = fs.existsSync(path.join(props.app.path, 'README.md'));
+  const readmeExists = fs.existsSync(path.join(root, 'README.md'));
   if (readmeExists) {
     fs.renameSync(
-      path.join(props.app.path, 'README.md'),
-      path.join(props.app.path, 'README.old.md')
+      path.join(root, 'README.md'),
+      path.join(root, 'README.old.md')
     );
   }
 }
 
-function copyTemplate(props) {
+function copyTemplate(root, origin, template) {
   const ownPackagePath = path.join(__dirname, '..', 'package.json');
   const ownPackageName = require(ownPackagePath).name;
-  const ownPath = path.join(props.app.path, 'node_modules', ownPackageName);
+  const ownPath = path.join(root, 'node_modules', ownPackageName);
 
-  const templatePath = props.template
-    ? path.resolve(props.app.source, props.template)
+  const templatePath = template
+    ? path.resolve(origin, template)
     : path.join(ownPath, 'template');
 
   if (fs.existsSync(templatePath)) {
-    fs.copySync(templatePath, props.app.path);
+    fs.copySync(templatePath, root);
   } else {
     logger.error(
       `Could not locate supplied template: %c${templatePath}`, 'green'
@@ -70,8 +59,8 @@ function copyTemplate(props) {
   }
 
   fs.move(
-    path.join(props.app.path, 'gitignore'),
-    path.join(props.app.path, '.gitignore'),
+    path.join(root, 'gitignore'),
+    path.join(root, '.gitignore'),
     [],
     err => {
       if (err) {
@@ -88,24 +77,21 @@ function copyTemplate(props) {
   );
 }
 
-function installDependencies(props) {
+function installDependencies(root, useYarn, verbose) {
   let command;
   let args;
 
-  if (props.useYarn) {
+  if (useYarn) {
     command = 'yarnpkg';
     args = ['add'];
   } else {
     command = 'npm';
-    args = ['install', '--save', props.verbose && '--verbose'].filter(e => e);
+    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
   // args.push('rear-core', 'rear-logger');
 
   // Install additional template dependencies, if present
-  const templateDependenciesPath = path.join(
-    props.app.path,
-    '.template.dependencies.json'
-  );
+  const templateDependenciesPath = path.join(root, '.template.dependencies.json');
   if (fs.existsSync(templateDependenciesPath)) {
     const templateDependencies = require(templateDependenciesPath).dependencies;
     args = args.concat(
