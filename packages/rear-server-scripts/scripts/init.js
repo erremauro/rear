@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const logger = require('rear-logger')('rear-xp-scripts-init');
+const logger = require('rear-logger')('rear-server-scripts-init');
 const spawn = require('child_process').spawn;
 
 module.exports = init;
@@ -88,7 +88,7 @@ function installDependencies(root, useYarn, verbose) {
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  // args.push('rear-core', 'rear-logger');
+  args.push('rear-core', 'rear-logger');
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(root, '.template.dependencies.json');
@@ -100,5 +100,12 @@ function installDependencies(root, useYarn, verbose) {
       })
     );
     fs.unlinkSync(templateDependenciesPath);
+  }
+
+  logger.info(`Installing dependencies using ${command}...`);
+  const proc = spawn.sync(command, args, { stdio: 'inherit' });
+  if (proc.status !== 0) {
+    logger.error(`\`${command} ${args.join(' ')}\` failed`);
+    return;
   }
 }
