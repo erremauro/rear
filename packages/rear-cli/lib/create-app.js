@@ -1,3 +1,4 @@
+const path = require('path');
 const logger = require('rear-logger')('rear-server');
 const shouldUseYarn = require('rear-core/should-use-yarn');
 const checkAppName = require('./check-app-name');
