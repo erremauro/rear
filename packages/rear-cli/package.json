@@ -1,6 +1,6 @@
 {
   "name": "rear-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Roberto Mauro <erremauro@icloud.com>",
   "license": "MIT",
   "repository": "https://github.com/rearjs/rear.git",
@@ -12,7 +12,7 @@
     "commander": "^2.9.0",
     "fs-extra": "^3.0.1",
     "hyperquest": "^2.1.2",
-    "rear-core": "0.1.0",
+    "rear-core": "^0.1.1",
     "rear-logger": "^0.1.0-alpha.3",
     "semver": "^5.3.0",
     "validate-npm-package-name": "^3.0.0"

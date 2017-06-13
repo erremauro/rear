@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "rear-xp",
+  "author": "Roberto Mauro <erremauro@icloud.com>",
+  "description": "",
+  "license": "MIT",
+  "repository": "https://github.com/rearjs/rear.git",
+  "bin": {
+    "rear-xp": "./bin/rear-xp"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jest"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "fs-extra": "^3.0.1",
+    "rear-core": "^0.1.1",
+    "rear-logger": "^0.1.0-alpha.2",
+    "validate-npm-package-name": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "jest": "^20.0.4"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-unused-vars": [
+        "warn"
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ]
+    }
+  },
+  "version": "0.1.1"
+}
