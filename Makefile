@@ -1,6 +1,7 @@
 export NODE_ENV = test
 
 test: test-clean
+	lerna bootstrap
 	lerna run test
 
 clean: test-clean
