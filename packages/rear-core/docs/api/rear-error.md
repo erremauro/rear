@@ -52,7 +52,8 @@ Use `rear-error` to create custom Error class with ES6 syntax.
 
 Creates a new `RearError` object with the given `message` and `props`.
 
-All `RearErrorProps` properties (_code, errno, description_) are also copied to the root object, while other properties are left in the `props` bag.
+All `RearErrorProps` properties (_code, errno, description_) are also copied
+to the root object, while other properties are left in the `props` bag.
 
 ##### Arguments
 
