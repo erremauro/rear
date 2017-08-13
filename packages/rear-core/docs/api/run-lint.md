@@ -67,20 +67,20 @@ using a `LintRepoter` compatible logger like [rear-logger] or [debug].
 |-------------------------|-----------------------------------------------|
 | `RuntimeModuleNotFound` | Thrown if `eslint` module is not installed    |
 
-##### Requires
+### Requires
 
 * `eslint`
 
-#### Interfaces
+### Interfaces
 
-##### LintReporter
+#### LintReporter
 
 A logger that can print color formatted messages to the console. [rear-logger]
 and [debug] are on of those.
 
-###### log (message: string, ...args: any[]): void
+##### log (message: string, ...args: any[]): void
 
-###### error (message: string, ...args: any[]): void
+##### error (message: string, ...args: any[]): void
 
 [eslint]: http://eslint.org
 [rear-logger]: https://github.com/rearjs/rear-logger
