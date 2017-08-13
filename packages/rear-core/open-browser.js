@@ -15,16 +15,18 @@ const opn = require('opn');
 // https://github.com/sindresorhus/opn#app
 const OSX_CHROME = 'google chrome';
 
-function openBrowser(url) {
+module.exports = openBrowser;
+
+///////////////////////////////
+
+function openBrowser (url) {
   // Attempt to honor this environment variable.
   // It is specific to the operating system.
   // See https://github.com/sindresorhus/opn#app for documentation.
   const browser = process.env.BROWSER;
 
   // Special case: BROWSER="none" will prevent opening completely.
-  if (browser === 'none') {
-    return false;
-  }
+  if (browser === 'none') return false;
 
   // If we're on OS X, the user hasn't specifically
   // requested a different browser, we can try opening
@@ -62,5 +64,3 @@ function openBrowser(url) {
     return false;
   }
 }
-
-module.exports = openBrowser;
