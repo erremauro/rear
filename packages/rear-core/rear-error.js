@@ -4,23 +4,22 @@ function RearError(message, props) {
   Error.captureStackTrace(this, this.constructor);
   this.name = this.constructor.name;
   this.message = message;
-
-  if (props.hasOwnProperty('code')) {
-    this.code = this.props.code;
-    delete props.code;
-  }
-
-  if (props.hasOwnProperty('errno')) {
-    this.errno = this.props.errno;
-    delete props.errno
-  }
-
-  if (props.hasOwnProperty('description')) {
-    this.description = this.props.description;
-    delete props.description;
-  }
-
   this.props = Object.assign({}, props);
+
+  if (this.props.hasOwnProperty('code')) {
+    this.code = this.props.code;
+    delete this.props.code;
+  }
+
+  if (this.props.hasOwnProperty('errno')) {
+    this.errno = this.props.errno;
+    delete this.props.errno
+  }
+
+  if (this.props.hasOwnProperty('description')) {
+    this.description = this.props.description;
+    delete this.props.description;
+  }
 }
 util.inherits(RearError, Error);
 
