@@ -14,5 +14,12 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.1.4"
+  "version": "independent",
+  "commands": {
+    "publish": {
+      "ignore": [
+        "rear-sandbox"
+      ]
+    }
+  }
 }
