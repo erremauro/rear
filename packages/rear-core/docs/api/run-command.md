@@ -25,6 +25,7 @@ const runCommand = require('rear-core/run-command');
 
 // expect calling function to handle errors
 async function install (): Promise<void> {
+  // use 'ignore' to suppress command output to console.
   await runCommand('npm', ['install', '--save-dev', 'rear-core'], 'ignore');
   // command ran successfully,
   // do stuff...
