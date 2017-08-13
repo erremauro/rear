@@ -4,6 +4,7 @@
     "repo": "https://github.com/rearjs/rear.git",
     "labels": {
       "tag: breaking change": ":boom: Breaking Change",
+      "tag: enhancement": ":rocket: Enhancement",
       "tag: new feature": ":rocket: New Feature",
       "tag: bug fix": ":bug: Bug Fix",
       "tag: polish": ":nail_care: Polish",

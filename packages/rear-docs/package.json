@@ -5,6 +5,10 @@
   "license": "MIT",
   "repository": "https://github.com/rearjs/rear.git",
   "scripts": {
-    "rear-docs": "./bin/rear-docs.js"
+    "rear-docs": "./bin/rear-docs.js",
+    "test": "echo ./node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
   }
 }
