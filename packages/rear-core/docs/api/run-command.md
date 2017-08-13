@@ -50,11 +50,3 @@ Asynchronously run a command that resolves on successful completion.
 ##### Returns
 
 A `Promise` that resolves on exit.
-
-##### Throws
-
-`CommandFailure` if the exit code is non zero.
-
-##### Requires
-
-* `cross-spawn`
