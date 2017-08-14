@@ -1,9 +1,9 @@
 const util = require('util');
 
-function RearError(message, props) {
-  Error.captureStackTrace(this, this.constructor);
+function RearError (message, props) {
   this.name = this.constructor.name;
   this.message = message;
+  Error.captureStackTrace(this, this.constructor);
   this.props = Object.assign({}, props);
 
   if (this.props.hasOwnProperty('code')) {
