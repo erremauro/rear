@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased (2017-08-14)
 
+#### :bug: Bug Fix
+* `rear-core`
+  * [#7](https://github.com/rearjs/rear/pull/7) Fix a rear-error issue with stack trace being captured before message 
+  ([@erremauro](https://github.com/erremauro))
+
 #### :memo: Documentation
 * `rear-core`
   * [#6](https://github.com/rearjs/rear/pull/6) Fix rear-core utilities listed
