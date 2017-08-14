@@ -10,7 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   * [#6](https://github.com/rearjs/rear/pull/6) Fix rear-core utilities listed
   in README.md. ([@erremauro](https://github.com/erremauro))
 
-## [rear-core@0.2.0] (2017-08-14)
+## [0.2.0] (2017-08-14)
 
 #### :rocket: New Feature
 * `rear-core`
@@ -18,4 +18,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   ([@erremauro](https://github.com/erremauro))
 
 [Unreleased]: https://github.com/rearjs/rear/compare/rear-core@0.2.0...HEAD
-[rear-core@0.2.0]: https://github.com/rearjs/rear/compare/v0.1.4...rear-core@0.2.0
+[0.2.0]: https://github.com/rearjs/rear/compare/v0.1.4...rear-core@0.2.0
