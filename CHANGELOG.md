@@ -17,5 +17,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   * [#4](https://github.com/rearjs/rear/pull/4) Add core modules to rear-core
   ([@erremauro](https://github.com/erremauro))
 
-[Unreleased]: https://github.com/rearjs/rear/compare/rear-core@0.2.0...HEAD
-[0.2.0]: https://github.com/rearjs/rear/compare/v0.1.4...rear-core@0.2.0
+[Unreleased]: https://github.com/rearjs/rear/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/rearjs/rear/compare/v0.1.4...v0.2.0
