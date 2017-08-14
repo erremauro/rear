@@ -6,14 +6,25 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 > **Tags:**
 > - :boom:       [Breaking Change]
 > - :rocket:     [New Feature]
+> - :rocket:     [Enhancement]
 > - :bug:        [Bug Fix]
 > - :memo:       [Documentation]
 > - :house:      [Internal]
 > - :nail_care:  [Polish]
 
-## [Unreleased]
+## Unreleased (2017-08-14)
 
-:rocket: Add rear-logger
+#### :memo: Documentation
+* `rear-core`
+  * [#6](https://github.com/rearjs/rear/pull/6) Fix rear-core utilities listed
+  in README.md. ([@erremauro](https://github.com/erremauro))
 
-[Unreleased]: https://github.com/rearjs/rear/compare/v0.1.0-alpha.1...HEAD
-[0.1.0-alpa.1]: https://github.com/rearjs/rear/tree/v0.1.0-alpha.1
+## [rear-core@0.2.0] (2017-08-14)
+
+#### :rocket: New Feature
+* `rear-core`
+  * [#4](https://github.com/rearjs/rear/pull/4) Add core modules to rear-core
+  ([@erremauro](https://github.com/erremauro))
+
+[Unreleased]: https://github.com/rearjs/rear/compare/rear-core@0.2.0...HEAD
+[rear-core@0.2.0]: https://github.com/rearjs/rear/compare/rear-core@0.2.0...v0.1.4
