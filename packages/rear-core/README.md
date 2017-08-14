@@ -7,7 +7,7 @@ A collection of development utilities for [Rear](https://github.com/rearjs/rear)
 ### Sync
 * [getRearEnv](docs/api/get-rear-env.md)
 * [RearError](docs/api/rear-error.md)
-* [runFlow](docs/api/run-lint.md)
+* [runLint](docs/api/run-lint.md)
 * [shouldUseYarn](docs/api/should-use-yarn.md)
 
 ### Async
