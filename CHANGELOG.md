@@ -3,15 +3,6 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-> **Tags:**
-> - :boom:       [Breaking Change]
-> - :rocket:     [New Feature]
-> - :rocket:     [Enhancement]
-> - :bug:        [Bug Fix]
-> - :memo:       [Documentation]
-> - :house:      [Internal]
-> - :nail_care:  [Polish]
-
 ## Unreleased (2017-08-14)
 
 #### :memo: Documentation
@@ -27,4 +18,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   ([@erremauro](https://github.com/erremauro))
 
 [Unreleased]: https://github.com/rearjs/rear/compare/rear-core@0.2.0...HEAD
-[rear-core@0.2.0]: https://github.com/rearjs/rear/compare/rear-core@0.2.0...v0.1.4
+[rear-core@0.2.0]: https://github.com/rearjs/rear/compare/v0.1.4...rear-core@0.2.0
