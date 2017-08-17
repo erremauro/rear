@@ -61,8 +61,8 @@ the best format (given the size), for us.
 
 ### FileSize format and operations
 
-In this example, `FileSize` is used to test a size threshold with [rear-logger] 
-`warn`, then calculate the exceeding size and format a message to print if the 
+In this example, `FileSize` is used to test a size threshold with [rear-logger]
+`warn`, then calculate the exceeding size and format a message to print if the
 test passes.
 
   ```javascript
@@ -175,11 +175,16 @@ Verify if the given size is equal to a `FileSize` object value.
 Format a `FileSize` object value to string. When a `format` is not specified,
 the nearest appropriate formatted string, given the size, is returned.
 
-Accepted formats are: `B` (bytes), `K` (kilobytes), `M` (megabytes), `G`
-(gigabytes), `T` (terabytes) or any other typical size labelling (i.e. `MB`
-or `GB`).
+Accepted formats are:
+
+* `B` (bytes)
+* `K` (kilobytes)
+* `M` (megabytes)
+* `G` (gigabytes)
+* `T` (terabytes)
+
+or any other typical size label (i.e. `MB` or `GB`).
 
 ##### Returns
 
 `string` Formatted size value for the given or nearest appropriate format.
-
