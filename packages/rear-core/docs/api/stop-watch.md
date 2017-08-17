@@ -15,7 +15,7 @@ Use `StopWatch` to track time passed.
   setTimeout(() => {
     watch.stop();
     // output: 3.2s
-    console.log(watch.diff().toString('s'))
+    console.log(watch.toString('s'))
   }, 3000);
   ```
 
