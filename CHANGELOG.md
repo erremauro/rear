@@ -3,17 +3,26 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased] (2017-08-14)
+## [Unreleased] (2017-08-17)
 
 #### :bug: Bug Fix
 * `rear-core`
   * [#7](https://github.com/rearjs/rear/pull/7) Fix a rear-error issue with stack trace being captured before message 
   ([@erremauro](https://github.com/erremauro))
 
+#### :rocket: New Feature
+* `rear-core`
+  * [#10](https://github.com/rearjs/rear/pull/10) Add a StopWatch to rear-core. ([@erremauro](https://github.com/erremauro))
+  * [#9](https://github.com/rearjs/rear/pull/9) Add size-reader to rear-core to read and diff files or directories sizes. ([@erremauro](https://github.com/erremauro))
+
 #### :memo: Documentation
 * `rear-core`
   * [#6](https://github.com/rearjs/rear/pull/6) Fix rear-core utilities listed
   in README.md. ([@erremauro](https://github.com/erremauro))
+  
+#### :house: Internal
+* `rear-core`
+  * [#8](https://github.com/rearjs/rear/pull/8) Fix an issue with runtime-require when rear-core module is simlinked. ([@erremauro](https://github.com/erremauro))
 
 ## [0.2.0] (2017-08-14)
 
