@@ -10,6 +10,7 @@ A collection of development utilities for [Rear](https://github.com/rearjs/rear)
 * [RearError](docs/api/rear-error.md)
 * [runLint](docs/api/run-lint.md)
 * [shouldUseYarn](docs/api/should-use-yarn.md)
+* [StopWatch](docs/api/stop-watch.md)
 
 ### Async
 * [runCommand](docs/api/run-command.md)
