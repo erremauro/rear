@@ -5,7 +5,20 @@
   "repository": "https://github.com/rearjs/rear.git",
   "license": "MIT",
   "author": "Roberto Mauro <erremauro@icloud.com>",
+  "scripts": {
+    "bootstrap": "node ./scripts/bootstrap.js",
+    "precommit": "lint-staged"
+  },
   "devDependencies": {
-    "lerna": "^2.0.0-rc.5"
+    "lint-staged": "^4.0.3",
+    "husky": "^0.14.3",
+    "lerna": "^2.0.0-rc.5",
+    "rear-logger": "^0.1.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix", 
+      "git add"
+    ]
   }
 }
