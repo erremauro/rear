@@ -45,17 +45,25 @@ the `reporter`.
 
 ## API
 
-#### runLint ( files: string[], reporter?: LintReporter): boolean
+#### runLint ( files: string[], config?: string, reporter?: LintReporter, eslintBin?: string): boolean
 
 Lint your source code using [eslint] and optionally print lint results
 using a `LintRepoter` compatible logger like [rear-logger] or [debug].
 
+[ESLlint][eslint] configurations are resolve automatically, but an optional
+configuration file to be used can be specified in the `config` argument.
+
+By the default `runLint` will try to resolve `eslint` module from your
+`node_modules` paths unless an `eslintBin` path is specifically specified.
+
 ##### Arguments
 
-| Argument  | Type          | Description                    |
-|-----------|---------------|--------------------------------|
-| files     | string[]      | A list of files to be linted   |
-| reporter? | LintReporter  | A reporter to log lint results |
+| Argument  | Type          | Description                     |
+|-----------|---------------|---------------------------------|
+| files     | string[]      | A list of files to be linted    |
+| config    | ?string       | Eslint config file              |
+| reporter  | ?LintReporter | A reporter to log lint results  |
+| eslintBin | ?string       | Optional eslint bin path        |
 
 ##### Returns
 
