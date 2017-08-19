@@ -21,7 +21,7 @@
     "chokidar": "^1.7.0",
     "commander": "^2.11.0",
     "deepmerge": "^1.5.0",
-    "rear-core": "^0.2.0",
+    "rear-core": "^0.2.1",
     "rear-logger": "0.1.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",

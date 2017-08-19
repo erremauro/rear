@@ -1,7 +1,11 @@
 {
   "lerna": "2.0.0-rc.5",
   "changelog": {
-    "repo": "https://github.com/rearjs/rear.git",
+    "repo": "rearjs/rear",
+    "cacheDir": ".changelog",
+    "ignoreCommitters": [
+      "erremauro"
+    ],
     "labels": {
       "tag: breaking change": ":boom: Breaking Change",
       "tag: enhancement": ":rocket: Enhancement",
