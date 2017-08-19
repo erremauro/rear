@@ -7,14 +7,35 @@
   "bin": {
     "rear": "./bin/rear.js"
   },
-  "scripts": {},
+  "files": [
+    "lib/AppInstaller.js"
+  ],
+  "scripts": {
+    "start": "./node_modules/.bin/rear-system-package start",
+    "build": "./node_modules/.bin/rear-system-package build",
+    "test": "./node_modules/.bin/jest"
+  },
   "dependencies": {
     "commander": "^2.9.0",
     "fs-extra": "^3.0.1",
     "hyperquest": "^2.1.2",
-    "rear-core": "^0.1.1",
-    "rear-logger": "^0.1.0-alpha.3",
+    "rear-logger": "^0.1.1",
     "semver": "^5.3.0",
+    "tar-pack": "^3.4.0",
+    "cross-spawn": "^5.1.0",
+    "tmp": "^0.0.33",
     "validate-npm-package-name": "^3.0.0"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.52.0",
+    "jest": "^20.0.4",
+    "rear-logger": "0.1.1",
+    "rear-system-package": "^0.1.0"
+  },
+  "rear": {
+    "system-package": {
+      "webpack": "false",
+      "target": "node"
+    }
   }
 }
