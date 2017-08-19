@@ -33,10 +33,19 @@ Use `run-flow` to run [flow] type check (`flow-bin` module must be installed).
 
 ## API
 
-#### async runFlow ()
+#### async runFlow ( flowBin?: string )
 
 Asynchronously run [flow] type check and print errors. The promise resolves on
 successful type checking, otherwise a `CommandFailure` error is thrown.
+
+By the default `runFlow` will try to resolve `flow-bin` module from your
+`node_modules` paths unless a `flowBin` path is specifically specified.
+
+#### Arguments
+
+| Name    | Type    | Description      |
+|---------|---------|------------------|
+| flowBin | ?string | Path to flow bin |
 
 #### Returns
 
