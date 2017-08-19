@@ -1,8 +1,5 @@
-const pkg = require('../../package.json')
 const NOOP = require('./noop');
 const runtimeRequire = require('./runtime-require');
-const CLIEngine = runtimeRequire('eslint', __filename).CLIEngine;
-const eslintCLI = new CLIEngine(pkg.eslintConfig);
 
 const DEFAULT_REPORTER = {
   log:   NOOP,
@@ -17,17 +14,32 @@ module.exports = runLint;
  * Lint all files and print results using the provided `reporter`.
  *
  * @param  {Array<string>}  files      A list of files to be linted
+ * @param  {?string}        config     ESLint configuration file to use
  * @param  {?RearLogger}    reporter   A reporter to print results
+ * @param  {?bin}           bin        Optional eslint bin path
  * @return {void}
  */
 
-function runLint (files, reporter) {
+function runLint (files, config, reporter, bin) {
   reporter = reporter || DEFAULT_REPORTER;
+  // Use the optional `config` file, otherwise eslint will automatically
+  // look for configurations files in the current working directory
+  const eslintConfig = config ? { configFile: config } : {};
+  // Use the optional eslint bin path to resolve eslint or try to find
+  // `eslint` in the `node_modules` tree. This makes linting work inside
+  // symlinked packages like this monorepo ;)
+  const CLIEngine = bin
+    ? require(bin).CLIEngine
+    : runtimeRequire('eslint', __filename).CLIEngine;
+
+  const eslintCLI = new CLIEngine(eslintConfig);
   const report = eslintCLI.executeOnFiles(files);
+
   if (report.errorCount > 0 || report.warningCount > 0) {
     printLintReportResults(report, reporter);
     return false;
   }
+
   return true;
 }
 
