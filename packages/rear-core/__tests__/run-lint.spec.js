@@ -10,7 +10,7 @@ describe('run-lint', () => {
       log: jest.fn(),
       error: jest.fn()
     };
-    const success = runLint(['index.js'], reporter);
+    const success = runLint(['index.js'], {}, reporter);
     expect(success).toBe(true);
     expect(reporter.log).not.toHaveBeenCalled();
     expect(reporter.error).not.toHaveBeenCalled();
@@ -23,7 +23,7 @@ describe('run-lint', () => {
       error: jest.fn()
     };
 
-    const success = runLint(['index.js'], reporter);
+    const success = runLint(['index.js'], {}, reporter);
     expect(success).toBe(false);
     expect(reporter.log).toHaveBeenCalled();
     expect(reporter.error).toHaveBeenCalled();
