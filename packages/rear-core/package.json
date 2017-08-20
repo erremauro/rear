@@ -1,6 +1,6 @@
 {
   "name": "rear-core",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Core utilities for Rear",
   "author": "Roberto Mauro <erremauro@icloud.com>",
   "repository": "https://github.com/rearjs/rear.git",
