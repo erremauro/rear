@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased] (2017-08-20)
+
+#### :bug: Bug Fix
+* `rear-system-package`
+  * [#18](https://github.com/rearjs/rear/pull/18) Fix an issue that prevented modules to be resolved. ([@erremauro](https://github.com/erremauro))
+
 ## [0.2.2] (2017-08-20)
 
 #### :bug: Bug Fix
@@ -45,5 +51,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   * [#4](https://github.com/rearjs/rear/pull/4) Add core modules to rear-core
   ([@erremauro](https://github.com/erremauro))
 
+[Unreleased]: https://github.com/rearjs/rear/compare/v0.2.0...HEAD
 [0.2.2]: https://github.com/rearjs/rear/compare/v0.2.0...v0.2.2
 [0.2.0]: https://github.com/rearjs/rear/compare/v0.1.4...v0.2.0
