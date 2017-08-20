@@ -2,15 +2,24 @@ const fs = require('fs');
 const path = require('path');
 const resolveApp = require('rear-core/resolve-app');
 
-const ownNodeModules = fs.realpathSync(
-  path.join(__dirname, '..', 'node_modules')
-);
+let ownNodeModules;
+
+try {
+  // Since this package is also used to build other packages
+  // in this repo, we need to make sure its dependencies
+  // are available when is symlinked by lerna.
+  // Normally, modules are resolved from the app's node_modules.
+  ownNodeModules = fs.realpathSync(
+    path.join(__dirname, '..', 'node_modules')
+  );
+} catch (err) {
+  ownNodeModules = resolveApp('node_modules');
+}
 
 const AppPaths = {
   ownNodeModules,
   root: resolveApp('src'),
   appIndexJs: resolveApp('src', 'index.js'),
-  // TODO: rename to appBuild ?
   dest: resolveApp('lib'),
   eslintConfig: path.join(ownNodeModules, 'eslint-config-rear', 'index.js'),
   flowBin:  path.join(ownNodeModules, 'flow-bin'),
