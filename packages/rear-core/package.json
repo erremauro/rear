@@ -9,20 +9,6 @@
   "engines": {
     "node": ">= 7.0.0"
   },
-  "files": [
-    "format-webpack-messages.js",
-    "get-package.json.js",
-    "get-rear-env.js",
-    "noop.js",
-    "open-browser.js",
-    "rear-error.js",
-    "resolve-app.js",
-    "run-command.js",
-    "run-flow.js",
-    "run-lint.js",
-    "should-use-yarn.js",
-    "transpile.js"
-  ],
   "scripts": {
     "test": "./node_modules/.bin/jest"
   },

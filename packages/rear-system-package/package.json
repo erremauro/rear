@@ -8,9 +8,6 @@
   "bin": {
     "rear-system-package": "./bin/rear-system-package.js"
   },
-  "files": [
-    "lib/Builder.js"
-  ],
   "engine": {
     "node": ">= 7.0.0"
   },
