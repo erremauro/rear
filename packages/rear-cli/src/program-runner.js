@@ -34,7 +34,10 @@ export class ProgramRunner extends ConsoleOperator {
 
     this.buildCommands();
 
+    this.timer.start();
     await this.execCommand();
+    this.timer.stop();
+    this.printFooter();
   }
 
   /**
@@ -54,7 +57,8 @@ export class ProgramRunner extends ConsoleOperator {
       // eslint-disable-next-line
       for (const [stage, cmd] of cmds) {
         this.printHeader(stage);
-        return await this.runCommand(cmd, args);
+        this.reporter.log(`%c$ ${cmd} ${this.joinArgs(args)}`, 'dim');
+        await this.runCommand(cmd, args);
       }
     } else {
       let suggestion;
@@ -80,7 +84,7 @@ export class ProgramRunner extends ConsoleOperator {
         const programs = await fs.readdir(binDir);
         for (const name of programs) {
           binCommands.push(name);
-          scripts[name] = `"${path.join(binDir, name)}"`;
+          scripts[name] = `${path.join(binDir, name)}`;
         }
       }
       this.state.visistedBinDirs.add(binDir);
