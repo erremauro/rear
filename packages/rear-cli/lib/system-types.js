@@ -1,0 +1,1 @@
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});const SystemTypes=exports.SystemTypes={app:'app',client:'client',server:'server',package:'package'};exports.default=SystemTypes;

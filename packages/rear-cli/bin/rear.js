@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-const pkg = require('../package.json');
 const program = require('commander');
+const version = require('../lib/rear-version');
 
 program
-  .version(pkg.name + '@' + pkg.version)
-  .command('server <name>', 'create a new rear express project')
-  .command('client <name>', 'create a new rear react project')
+  .usage('[cmd] [options]')
+  .version(`rear@v${version}`)
+  .command('new <name>', 'create a new rear project')
+  .command('run [cmd] [options]', 'create a new rear project', {isDefault: true})
   .parse(process.argv);

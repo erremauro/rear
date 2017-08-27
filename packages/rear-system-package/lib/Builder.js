@@ -1,3 +1,5 @@
+const fs = require('fs-extra');
+const path = require('path');
 const util = require('util');
 const deepmerge = require('deepmerge');
 const {EventEmitter} = require('events');
@@ -42,7 +44,19 @@ class Builder {
     if (!this.lint(files)) return this.emit('error');
 
     return this.typecheck()
-      .then(() => this.props.webpack ? this.compile() : this.transform(files))
+      .then(() => {
+        if (this.props.webpack) {
+          return this.compile()
+            .then(() => [
+              path.join(
+                this.props.transformConfig.output.path,
+                this.props.transformConfig.output.filename
+              )
+            ])
+        }
+        return this.transform(files).then(() => files);
+      })
+      .then(this.compress.bind(this))
       .then(this.close.bind(this))
       .catch(this.handleError.bind(this));
   }
@@ -107,9 +121,9 @@ class Builder {
     this.emit('transform');
 
     const compiler = webpack(this.props.transformConfig);
-    return new Promise((reject, resolve) => {
+
+    return new Promise((resolve, reject) => {
       compiler.run((err, stats) => {
-        if (err) this.reporter.error('[Builder]: ', err.message);
         if (err) return reject(new Error(err.message));
         const messages = formatWebpackMessages(stats.toJson({}, true));
         if (messages.errors.length) {
@@ -121,6 +135,34 @@ class Builder {
         return resolve({stats, warnings: messages.warnings});
       });
     });
+  }
+
+  compress (files) {
+    if (!this.props.compress) return Promise.resolve();
+    this.emit('compress');
+    const UglifyJS = require('uglify-es');
+    const promises = files.map(file => {
+      return new Promise((resolve, reject) => {
+        fs.readFile(file, (err, data) => {
+          if (err) return reject(err);
+
+          const content = data.toString();
+          const result = UglifyJS.minify(content, {
+            compress: {
+              passes: 2
+            }
+          });
+
+          if (result.error) return reject(result.error);
+
+          fs.writeFile(file, result.code, (err) => {
+            if (err) return reject(err);
+            return resolve();
+          });
+        })
+      });
+    });
+    return Promise.all(promises);
   }
 
   handleError (err) {
@@ -136,6 +178,7 @@ Builder.defaults = {
   silent:    false,
   watch:     false,
   webpack:   false,
+  compress:  false,
   flowBin:         undefined,
   eslintBin:       undefined,
   eslintConfig:    undefined,
