@@ -35,7 +35,14 @@ export class ProgramRunner extends ConsoleOperator {
     this.buildCommands();
 
     this.timer.start();
-    await this.execCommand();
+    try {
+      await this.execCommand();
+    } catch (err) {
+      if (err instanceof CommandNotFound) {
+        this.reporter.error(err.message);
+      }
+    }
+
     this.timer.stop();
     this.printFooter();
   }
@@ -63,7 +70,8 @@ export class ProgramRunner extends ConsoleOperator {
     } else {
       let suggestion;
 
-      for (const commandName of scripts) {
+      for (let commandName in scripts) {
+        if (!scripts.hasOwnProperty(commandName)) continue;
         const steps = leven(commandName, programName);
         if (steps < 2) {
           suggestion = commandName;
