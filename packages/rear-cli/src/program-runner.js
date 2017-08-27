@@ -33,8 +33,8 @@ export class ProgramRunner extends ConsoleOperator {
     await this.initScriptsCommands();
 
     this.buildCommands();
-
     this.timer.start();
+
     try {
       await this.execCommand();
     } catch (err) {
