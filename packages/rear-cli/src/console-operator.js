@@ -1,7 +1,7 @@
 /** @flow */
-import fs from 'fs-extra';
-import path from 'path';
 import version from './rear-version';
+import resolveApp from 'rear-core/resolve-app';
+import {StopWatch} from 'rear-core/stop-watch';
 import { type ReporterType, SilentReporter } from './reporter';
 
 export class ConsoleOperator {
@@ -15,6 +15,7 @@ export class ConsoleOperator {
     delete props.reporter;
 
     this.props = Object.assign({}, defaultProps, props);
+    this.timer = new StopWatch()
     this.state = {};
   }
 
@@ -32,7 +33,7 @@ export class ConsoleOperator {
   }
 
   printFooter (): void {
-
+    this.reporter.log(`:sparkles: Done in ${this.timer.toString('s')}.`);
   }
 
   performLifeCycle () {
@@ -40,10 +41,7 @@ export class ConsoleOperator {
   }
 
   resolveApp (...args: Array<string>): string {
-    if (!this.state.appDirectory) {
-      this.setState({ appDirectory: fs.realpathSync(process.cwd()) });
-    }
-    return path.resolve(this.state.appDirectory, path.join(...args));
+    return resolveApp(...args);
   }
 }
 
