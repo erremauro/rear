@@ -22,7 +22,8 @@ export class AppNameConflict extends RearError {
       code: 'ENAMECONFLICT',
       errno: 323,
       description: 'A dependency with the same name already exists.',
-    }, props);
+      ...props
+    });
 
     this.dependencies = props.dependencies;
   }
@@ -39,11 +40,12 @@ export class InvalidVersion extends RearError {
   constructor (props: InvalidVersionProps) {
     const message = `The ${props.program} version ${props.version} `
         + `you are using is unsupported.`;
-    super(message, Object.assign({}, {
+    super(message, {
       code: 'EINVALIDVERSION',
       description: message,
       errno: 337,
-    }, props));
+      ...props
+    });
 
     this.program = this.props.program;
     this.minVersion = this.props.minVersion;
@@ -62,8 +64,9 @@ export class DirectoryConflict extends RearError {
     super(message, {
       code: 'EDIRCONFLICT',
       description: `The directory ${props.directory} contains files that could conflict`,
-      errno: 348
-    }, props);
+      errno: 348,
+      ...props
+    });
     this.directory = props.directory;
     this.conflicts = props.conflicts;
   }
@@ -79,8 +82,9 @@ export class CommandFailure extends RearError {
     super(message, {
       code: 'ECMDFAILURE',
       description: message,
-      errno: 500
-    }, props);
+      errno: 500,
+      ...props
+    });
     this.command = this.props.command;
   }
 }
@@ -96,7 +100,8 @@ export class CommandNotFound extends RearError {
     super(message, {
       code: 'ECMDNOTFOUND',
       description: message,
-      errno: 405
+      errno: 405,
+      suggestion
     });
   }
 }
