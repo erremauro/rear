@@ -1,0 +1,1 @@
+'use strict';var _package=require('../package.json');module.exports=_package.version;
