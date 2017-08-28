@@ -1,4 +1,4 @@
-/** @flow */
+// @flow
 export const SystemTypes = {
   app: 'app',
   client: 'client',

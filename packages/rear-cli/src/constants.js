@@ -1,3 +1,4 @@
+// @flow
 export const NODE_MODULES = process.env.NODE_PATH || 'node_modules';
 export const NODE_MIN_VERSION = '7.0.0';
 export const NPM_MIN_VERSION  = '3.0.0';

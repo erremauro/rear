@@ -1,3 +1,4 @@
+// @flow
 import fs from 'fs-extra';
 import path from 'path';
 import {NODE_MODULES} from './constants';

@@ -1,3 +1,4 @@
+// @flow
 import {NOOP} from './constants';
 import createReporter from 'rear-logger';
 

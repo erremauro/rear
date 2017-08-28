@@ -1,8 +1,8 @@
-/** @flow */
-import version from './rear-version';
+// @flow
 import resolveApp from 'rear-core/resolve-app';
 import {StopWatch} from 'rear-core/stop-watch';
-import { type ReporterType, SilentReporter } from './reporter';
+import version from '../rear-version';
+import { type ReporterType, SilentReporter } from '../reporter';
 
 export class ConsoleOperator {
   props: Object;

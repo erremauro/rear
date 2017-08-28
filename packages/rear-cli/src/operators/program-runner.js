@@ -1,10 +1,10 @@
-/** @flow */
+// @flow
 import fs from 'fs-extra';
 import path from 'path';
 import ConsoleOperator from './console-operator';
-import config from './config';
-import {type ReporterType} from './reporter'
-import {CommandNotFound} from './errors';
+import config from '../config';
+import {type ReporterType} from '../reporter'
+import {CommandNotFound} from '../errors';
 import {execSync} from 'child_process';
 import leven from 'leven';
 
@@ -176,9 +176,9 @@ export class ProgramRunner extends ConsoleOperator {
   }
 }
 
-export async function runProgram (programName: string, ...args: Array<string>) {
-  const programRunner = new ProgramRunner({programName, args});
-  return programRunner.run();
+export async function runProgram (props: ProgramRunnerProps): Promise<void> {
+  const programRunner = new ProgramRunner(props);
+  return await programRunner.run();
 }
 
 export default runProgram;
