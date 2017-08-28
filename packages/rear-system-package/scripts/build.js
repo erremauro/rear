@@ -25,6 +25,7 @@ function Main () {
 }
 
 function build (appPaths, reporter) {
+  fs.removeSync(appPaths.dest);
   fs.ensureDirSync(appPaths.dest);
   const eslintBin    = appPackageJson.eslintConfig
       ? null // use the appPackage eslint dependency
@@ -41,6 +42,7 @@ function build (appPaths, reporter) {
     root: appPaths.root,
     dest: appPaths.dest,
     watch: false,
+    compress: false, // disable until UglifyJS compress results are fixed
     webpack: env.REAR_SYSTEM_PACKAGE_WEBPACK === 'true'
   });
 
@@ -48,6 +50,7 @@ function build (appPaths, reporter) {
   builder.on('lint', handleLint);
   builder.on('typecheck', handleTypecheck);
   builder.on('transform', handleTransform);
+  builder.on('compress', handleCompress);
   builder.on('close', handleClose);
   builder.on('error', handleError);
 
@@ -60,23 +63,28 @@ function build (appPaths, reporter) {
 function handleLint () {
   this.reporter.clear();
   this.reporter.log('%c[1/3]%c :sleuth_or_spy: '
-      + 'Linting...', 'gray', 'white');
+      + 'Linting...', 'dim', 'white');
 }
 
 function handleTypecheck () {
   this.reporter.clear();
   this.reporter.log('%c[2/3]%c :left_pointing_magnifying_glass: '
-      + 'Typechecking...', 'gray', 'white');
+      + 'Typechecking...', 'dim', 'white');
 }
 
 function handleTransform () {
   this.reporter.clear();
-  this.reporter.log('%c[3/3]%c :package: Compiling...', 'gray', 'white');
+  this.reporter.log('%c[3/3]%c :package: Compiling...', 'dim', 'white');
+}
+
+function handleCompress () {
+  this.reporter.clear();
+  this.reporter.log('%c[3/3]%c :package: Compressing...', 'dim', 'white');
 }
 
 function handleStart () {
   this.reporter.hideCursor();
-  this.reporter.highlight(`${packageJson.name} start v${packageJson.version}`);
+  this.reporter.highlight(`${packageJson.name} buil v${packageJson.version}`);
   this.reporter.info(`Building %c${appPackageJson.name}`, 'green');
 }
 
@@ -93,7 +101,7 @@ function handleClose (stats) {
   );
   this.reporter.log();
   this.reporter.log(
-    `  %cSize:\t\t%c${stats.size.sign}${stats.size.diff.toString('k')}`,
+    `  %cSize:\t\t%c${stats.size.dest.toString()} (${stats.size.sign}${stats.size.diff.toString('k')})`,
     'bold', 'reset'
   );
   this.reporter.log(`  %cTime:\t\t%c${stats.timer.toString('s')}`, 'bold', 'reset');
