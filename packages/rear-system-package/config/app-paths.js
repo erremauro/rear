@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const env = require('rear-core/get-rear-env')();
 const resolveApp = require('rear-core/resolve-app');
 
 let ownNodeModules;
@@ -16,11 +17,13 @@ try {
   ownNodeModules = resolveApp('node_modules');
 }
 
+const ROOT = path.resolve(env.REAR_SYSTEM_PACKAGE_ROOT) || resolveApp('src');
+const DEST = path.resolve(env.REAR_SYSTEM_PACKAGE_DEST) || resolveApp('lib');
 const AppPaths = {
   ownNodeModules,
-  root: resolveApp('src'),
-  appIndexJs: resolveApp('src', 'index.js'),
-  dest: resolveApp('lib'),
+  root: ROOT,
+  indexJs: path.join(ROOT, 'index.js'),
+  dest: DEST,
   eslintConfig: path.join(ownNodeModules, 'eslint-config-rear', 'index.js'),
   flowBin:  path.join(ownNodeModules, 'flow-bin'),
   eslintBin: path.join(ownNodeModules, 'eslint'),

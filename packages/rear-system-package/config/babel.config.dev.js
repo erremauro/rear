@@ -6,9 +6,6 @@ module.exports = {
   compact: false,
   comments: false,
   presets: [
-    path.join(appPaths.ownNodeModules, 'babel-preset-env'),
-    path.join(appPaths.ownNodeModules, 'babel-preset-es2015'),
-    path.join(appPaths.ownNodeModules, 'babel-preset-stage-0'),
     path.join(appPaths.ownNodeModules, 'babel-preset-rear')
   ]
 };
