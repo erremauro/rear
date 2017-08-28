@@ -1,5 +1,5 @@
-/** @flow */
-import RearError from './rear-error';
+// @flow
+import RearError from 'rear-core/rear-error';
 
 export class InvalidNpmName extends RearError {
   constructor (message: string) {

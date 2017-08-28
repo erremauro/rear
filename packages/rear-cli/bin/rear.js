@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-const program = require('commander');
-const version = require('../lib/rear-version');
+const {CLIEngine} = require('../lib/cli');
 
-program
-  .usage('[cmd] [options]')
-  .version(`rear@v${version}`)
-  .command('new <name>', 'create a new rear project')
-  .command('run [cmd] [options]', 'create a new rear project', {isDefault: true})
-  .parse(process.argv);
+CLIEngine(process.argv)
+  .then(() => {
+    process.exit(0);
+  })
+  .catch(err => {
+    process.exit(err.errno || err.code || 1);
+  });

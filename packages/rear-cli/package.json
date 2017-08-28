@@ -7,9 +7,6 @@
   "bin": {
     "rear": "./bin/rear.js"
   },
-  "files": [
-    "lib/AppInstaller.js"
-  ],
   "scripts": {
     "start": "./node_modules/.bin/rear-system-package start",
     "build": "./node_modules/.bin/rear-system-package build",
@@ -23,7 +20,6 @@
     "rear-logger": "^0.2.0",
     "semver": "^5.3.0",
     "tar-pack": "^3.4.0",
-    "cross-spawn": "^5.1.0",
     "tmp": "^0.0.33",
     "leven": "^2.1.0",
     "validate-npm-package-name": "^3.0.0"

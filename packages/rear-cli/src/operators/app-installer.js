@@ -1,4 +1,4 @@
-/** @flow */
+// @flow
 import fs from 'fs-extra';
 import path from 'path';
 import dns from 'dns';
@@ -10,14 +10,14 @@ import {unpack} from 'tar-pack';
 import semver from 'semver';
 import validateNpmName from 'validate-npm-package-name';
 import ConsoleOperator from './console-operator';
-import {ReporterType} from './reporter';
-import SystemTypes, {type SystemType} from './system-types';
+import {type ReporterType} from '../reporter';
+import SystemTypes, {type SystemType} from '../system-types';
 import {
   KNOWN_GENERATED_FILES,
   NODE_MIN_VERSION,
   NPM_MIN_VERSION,
   VALID_FILES
-} from './constants';
+} from '../constants';
 import {
   AppNameConflict,
   CommandFailure,
@@ -25,7 +25,7 @@ import {
   InvalidNpmName,
   InvalidVersion,
   TemplateNotFound
-} from './errors';
+} from '../errors';
 
 type InstallerOpts = {
   appName: string,
@@ -480,8 +480,10 @@ export class AppInstaller extends ConsoleOperator {
         const packageName = require(path.join(tmpDir, 'package.json')).name;
         return Promise.resolve(packageName);
       } catch(err) {
-        // The package name could be with or without semver version, e.g. react-scripts-0.2.0-alpha.1.tgz
-        // However, this function returns package name only without semver version.
+        // The package name could be with or without semver version,
+        // e.g. "react-scripts-0.2.0-alpha.1.tgz"
+        // However, this function returns package name only without semver
+        // version.
         this.reporter.warn(
           `Could not extract the package name from the archive: ${err.message}`
         );
