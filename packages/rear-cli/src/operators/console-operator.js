@@ -1,7 +1,7 @@
 // @flow
 import resolveApp from 'rear-core/resolve-app';
 import {StopWatch} from 'rear-core/stop-watch';
-import version from '../rear-version';
+import {getHeader} from '../rear-version';
 import { type ReporterType, SilentReporter } from '../reporter';
 
 export class ConsoleOperator {
@@ -28,8 +28,8 @@ export class ConsoleOperator {
   }
 
   printHeader (stage?: string): void {
-    const name = stage ? `rear ${stage}` : 'rear';
-    this.reporter.highlight(`${name}@v${version}`);
+    const header = getHeader(stage);
+    this.reporter.highlight(header);
   }
 
   printFooter (): void {

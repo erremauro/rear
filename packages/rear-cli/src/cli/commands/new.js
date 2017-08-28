@@ -6,6 +6,7 @@ class NewCommand extends BaseCommand {
   constructor () {
     super({
       name: 'new',
+      aliases: ['n'],
       usage: '<project-name>',
       description: 'Create a new rear project',
     });

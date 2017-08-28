@@ -1,6 +1,10 @@
 import {type ReporterType} from '../../reporter';
 
-module.exports = (reporter: ReporterType): void => {
+export default printHelpFooter;
+
+//////////////////////////////////
+
+function printHelpFooter (reporter: ReporterType): void {
   reporter.log();
   reporter.log(
     '  Run %crear help COMMAND%c for more information on specific commands.',

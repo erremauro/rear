@@ -1,9 +1,9 @@
 // @flow
 import commander from 'commander';
-import commands from './commands';
+import commands, {CommandList} from './commands';
 import {Reporter} from '../reporter';
 import version from '../rear-version';
-import printHelpInfo from './utils/print-help-info';
+import printHelpFooter from './utils/print-help-footer';
 
 export async function CLIEngine (args: Array<string>): Promise<void> {
   // TODO: Right now startArgs and endArgs have no purpose
@@ -22,7 +22,7 @@ export async function CLIEngine (args: Array<string>): Promise<void> {
   ]);
 
   let command;
-  let commandName: string = args.shift();
+  let commandName: string = args.shift() || 'help';
 
   if (commandName === '-v' || commandName === '--version') {
     Reporter.log(`rear@v${version}`);
@@ -33,27 +33,29 @@ export async function CLIEngine (args: Array<string>): Promise<void> {
     commandName = 'help';
   }
 
-  // if no args or command name looks like a flag do not set a command
+  // if no args or command name looks like a flag set command to 'install'
   if (commandName[0] === '-') {
     args.unshift(commandName);
+    commandName = 'install';
   }
 
   // If a command name cannot be found, but args were specified,
   // set the default command to `run` otherwise use the command found.
-  if (commands.hasOwnProperty(commandName)) {
-    command = commands[commandName];
+  if (commands.has(commandName)) {
+    command = commands.get(commandName);
   } else if (args.length >= 0) {
     args.unshift(commandName);
     commandName = 'run';
-    command = commands[commandName];
+    command = commands.get(commandName);
   }
 
+  // Print the help output by default if no command was specified.
   if (!command || (commandName === 'help' && args.length === 0)) {
     commander.outputHelp();
     return Promise.resolve()
   }
 
-  return command.run(args);
+  return await command.run(args);
 }
 
 function printHelp (): void {
@@ -64,18 +66,21 @@ function printHelp (): void {
   let longestCmd = 0;
   let cmds = []
 
-  for (const commandName in commands) {
-    if (!commands.hasOwnProperty(commandName)) continue;
-
-    const cmd = commands[commandName];
+  // create an Array of valid commands while registering
+  // the length of the longest command usage description.
+  for (const cmd of CommandList) {
+    if (cmd.hidden) continue;
     if (longestCmd < cmd.usage.length) longestCmd = cmd.usage.length;
     cmds.push(cmd);
   }
 
+  // Print an aligned list of command usages and descriptions.
+  // Calculate the number of spaces (pad) that must be appended to `cmd.usage`
+  // in order to correctly align the command list on screen.
+  // Usage and description are separated with a double-space
+  // on the longest command usage description, therefore with add 1 to
+  // the calculated pad length.
   for (const cmd of cmds) {
-    // calculate the number of spaces to append to usage
-    // in order to correctly align all commands with a double-space
-    // separation between usage and description.
     let pad = (longestCmd - cmd.usage.length) + 1;
 
     do {
@@ -86,5 +91,5 @@ function printHelp (): void {
     Reporter.log(`    %c${cmd.usage}%c${cmd.description}`, 'cyan', 'reset')
   }
 
-  printHelpInfo(Reporter);
+  printHelpFooter(Reporter);
 }

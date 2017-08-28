@@ -78,7 +78,7 @@ type CommandFailureProps = {
 
 export class CommandFailure extends RearError {
   constructor (props: CommandFailureProps) {
-    const message = `${props.command} has failed.`;
+    const message = `${props.command} failed with exit code ${props.exitCode}.`;
     super(message, {
       code: 'ECMDFAILURE',
       description: message,

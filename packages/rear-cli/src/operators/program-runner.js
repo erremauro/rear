@@ -4,7 +4,7 @@ import path from 'path';
 import ConsoleOperator from './console-operator';
 import config from '../config';
 import {type ReporterType} from '../reporter'
-import {CommandNotFound} from '../errors';
+import {CommandNotFound, CommandFailure} from '../errors';
 import {execSync} from 'child_process';
 import leven from 'leven';
 
@@ -38,13 +38,14 @@ export class ProgramRunner extends ConsoleOperator {
     try {
       await this.execCommand();
     } catch (err) {
-      if (err instanceof CommandNotFound) {
-        this.reporter.error(err.message);
-      }
+      this.reporter.error(err.message);
+      this.timer.stop();
+      return Promise.resolve();
     }
 
     this.timer.stop();
     this.printFooter();
+    return Promise.resolve();
   }
 
   /**
@@ -153,7 +154,10 @@ export class ProgramRunner extends ConsoleOperator {
         execSync(command, { stdio });
         resolve()
       } catch (err) {
-        reject(err)
+        reject(new CommandFailure({
+          command: 'Command',
+          exitCode: err.errno || err.code || 1
+        }));
       }
     });
   }
