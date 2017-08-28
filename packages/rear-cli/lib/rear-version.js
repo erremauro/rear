@@ -1,1 +1,1 @@
-'use strict';var _package=require('../package.json');module.exports=_package.version;
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});exports.getHeader=getHeader;var _package=require('../package.json');function getHeader(stage){const programName=stage?`rear ${stage}`:'rear';return`${programName}@v${_package.version}`}exports.default=_package.version;

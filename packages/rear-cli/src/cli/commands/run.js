@@ -6,6 +6,7 @@ class RunCommand extends BaseCommand {
   constructor () {
     super({
       name: 'run',
+      aliases: ['r'],
       usage: '<cmd>',
       description: 'Find and run a command',
     });

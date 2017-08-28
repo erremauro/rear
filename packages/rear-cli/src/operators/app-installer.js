@@ -9,6 +9,7 @@ import hyperquest from 'hyperquest';
 import {unpack} from 'tar-pack';
 import semver from 'semver';
 import validateNpmName from 'validate-npm-package-name';
+import checkIfOnline from 'rear-core/check-if-online';
 import ConsoleOperator from './console-operator';
 import {type ReporterType} from '../reporter';
 import SystemTypes, {type SystemType} from '../system-types';
@@ -375,7 +376,7 @@ export class AppInstaller extends ConsoleOperator {
    */
 
   async install (): Promise<void> {
-    const isOnline = await this.checkIfOnline();
+    const isOnline = await checkIfOnline();
     const {command, args} = this.getCommand(
       this.props.dependencies,
       this.shouldUseYarn(),
@@ -593,20 +594,6 @@ export class AppInstaller extends ConsoleOperator {
             },
           });
         }
-      });
-    });
-  }
-
-  async checkIfOnline (): Promise<boolean> {
-    if (!this.shouldUseYarn()) {
-      // Don't ping the Yarn registry.
-      // We'll just assume the best case.
-      return Promise.resolve(true);
-    }
-
-    return new Promise(resolve => {
-      this.dnsLookup('registry.yarnpkg.com', err => {
-        resolve(err === null);
       });
     });
   }

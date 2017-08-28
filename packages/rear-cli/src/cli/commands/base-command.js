@@ -4,8 +4,11 @@ import version from '../../rear-version';
 import commander from 'commander';
 
 export interface RearCommand {
+  hidden: boolean,
   name: string,
   usage: string,
+  sortWeight: number,
+  aliases: Array<string>,
   cmdUsage: string,
   description: string,
   command: Object,
@@ -17,6 +20,9 @@ export interface RearCommand {
 export class BaseCommand {
   name: string;
   usage: string;
+  hidden: boolean;
+  aliases: Array<string>;
+  sortWeight: number;
   description: string;
   command: Object;
   reporter: ReporterType;
@@ -26,12 +32,16 @@ export class BaseCommand {
     this.name = props.name;
     this.cmdUsage = props.usage;
     this.usage = `${this.name} ${this.cmdUsage}`;
-    this.description = props.description;
+    this.description = props.description || '';
+    this.sortWeight = this.usage.length + this.description.length;
+    this.hidden = props.hidden || false;
+    this.aliases = props.aliases || [];
     this.reporter = Reporter;
 
     delete props.name;
     delete props.usage;
     delete props.description;
+    delete props.hidden;
 
     this.props = Object.assign({}, props);
     this.state = {};
@@ -59,11 +69,7 @@ export class BaseCommand {
 
     this.command.parse(['rear', this.name].concat(args));
 
-    if (
-      args.length === 0 ||
-      args.indexOf('-h') >= 0 ||
-      args.indexOf('--help') >= 0
-    ) {
+    if (args.indexOf('-h') >= 0 || args.indexOf('--help') >= 0) {
       this.command.outputHelp()
       return Promise.resolve();
     }
@@ -73,6 +79,7 @@ export class BaseCommand {
 
   prepareCommand (): void {
     this.command.usage(this.cmdUsage);
+    this.command.description(this.description);
     this.command.version(`${this.name}@v${version}`);
     this.command.on('--help', this.printHelp.bind(this));
   }
