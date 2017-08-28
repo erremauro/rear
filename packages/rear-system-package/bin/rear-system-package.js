@@ -27,7 +27,12 @@ program
 const cmdScript = path.join(__dirname, '../scripts/', `${script}.js`);
 
 if (fs.existsSync(cmdScript)) {
-  execSync(`node ${cmdScript}`, { stdio: 'inherit' } );
+  try {
+      execSync(`node ${cmdScript}`, { stdio: 'inherit' } );
+  } catch (err) {
+    if (err) logger.error(err.message);
+  }
+
   process.exit(0);
 } else {
   logger.error(`Command ${cmdScript} not found`);

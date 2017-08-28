@@ -1,17 +1,35 @@
 const path = require('path');
 const env = require('rear-core/get-rear-env')();
 const appPaths = require('./app-paths');
+const appPackageJson = require('rear-core/get-package-json')();
+
+const target = env.REAR_SYSTEM_PACKAGE_TARGET || 'node';
+const filename = env.REAR_SYSTEM_PACKAGE_FILENAME || `${appPackageJson.name}.js` || '[name].js';
+const entry = [appPaths.indexJs];
+
+let node;
+let exclude = /node_modules/;
+let plugins = [];
+if (target !== 'node') {
+  entry.unshift(require.resolve('./polyfills'));
+  node = {
+    fs: 'empty',
+    net: 'empty',
+    dgram: 'empty',
+    dns: 'empty',
+    tls: 'empty'
+  }
+  exclude = undefined;
+}
 
 module.exports = {
   // do not attempt to continue if errors are found
   bail: true,
-  target: env.REAR_SYSTEM_PACKAGE_TARGET || 'node',
-  entry: [
-    appPaths.appIndexJs,
-  ],
+  target,
+  entry,
   output: {
+    filename,
     path: appPaths.dest,
-    filename: 'build.js',
   },
   resolve: {
     'modules': ['node_modules', appPaths.appNodeModules],
@@ -43,14 +61,15 @@ module.exports = {
             loader: require.resolve('eslint-loader'),
           },
         ],
-        include: appPaths.src,
+        include: appPaths.root,
       },
       {
         oneOf: [
           // Process JS with Babel.
         {
           test: /\.(js|jsx)$/,
-          include: appPaths.src,
+          exclude,
+          include: appPaths.root,
           loader: require.resolve('babel-loader'),
           options: {
               babelrc: false,
@@ -66,6 +85,8 @@ module.exports = {
       }
     ]
   },
+  plugins,
+  node,
   // Turn off performance hints during development because we don't do any
   // splitting or minification in interest of speed. These warnings become
   // cumbersome.
